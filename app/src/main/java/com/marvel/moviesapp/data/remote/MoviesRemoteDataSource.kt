@@ -16,7 +16,7 @@ interface MoviesRemoteDataSource {
     suspend fun getNowPlayingMovies(@Query("page") page: Int): Response<BaseListingResponse<RemoteMovie>>
 
     @GET("/search/movie")
-    suspend fun getNowPlayingMovies(
+    suspend fun searchMovies(
         @Query("query") query: String,
         @Query("page") page: Int
     ): Response<BaseListingResponse<RemoteMovie>>
