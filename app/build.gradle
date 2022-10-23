@@ -1,16 +1,18 @@
 plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
+    alias libs.plugins.android.application
+    alias libs.plugins.kotlin.android
+    alias libs.plugins.hilt.plugin
+    alias libs.plugins.kotlin.kapt
 }
 
 android {
     namespace 'com.marvel.moviesapp'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.marvel.moviesapp"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -34,10 +36,23 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.6.1'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    // Android/Ui
+    implementation libs.android.coreKtx
+    implementation libs.android.appCompat
+    implementation libs.android.material
+    implementation libs.bundles.lifecycle
+    implementation libs.bundles.compose
+
+    // Threading
+    implementation libs.kotlin.coroutines.android
+
+    // Logging
+    implementation libs.timber
+
+    // Networking
+    implementation libs.bundles.networking
+
+    // Dependency Injection
+    implementation libs.android.hilt
+    kapt libs.android.hilt.compiler
 }
