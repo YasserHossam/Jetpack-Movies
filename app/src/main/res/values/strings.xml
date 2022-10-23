@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Movies App</string>
+
+    <!-- Bottom Navigation -->
+    <string name="bottom_navigation_now_playing">Now Playing</string>
+    <string name="bottom_navigation_top_rated">Top Rated</string>
+    <string name="bottom_navigation_search">Search</string>
+    <string name="bottom_navigation_favorites">Favorites</string>
+
 </resources>
