@@ -19,7 +19,7 @@ class RemoteMoviePagingSource(
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RemoteMovie> {
-        val currentPage = params.key ?: 0
+        val currentPage = params.key ?: 1
         return try {
             val response = when (dataType) {
                 PaginatedDataType.NowPlaying -> dataSource.getNowPlayingMovies(currentPage)
@@ -32,8 +32,8 @@ class RemoteMoviePagingSource(
             if (!emptyResults) {
                 LoadResult.Page(
                     data = response.body()?.results!!,
-                    prevKey = if (currentPage == 0) null else currentPage - params.loadSize,
-                    nextKey = currentPage + params.loadSize
+                    prevKey = if (currentPage == 0) null else currentPage - 1,
+                    nextKey = currentPage + 1
                 )
             } else
                 LoadResult.Page(data = emptyList(), prevKey = null, nextKey = null)
