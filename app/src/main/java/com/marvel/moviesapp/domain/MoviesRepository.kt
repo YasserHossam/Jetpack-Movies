@@ -11,7 +11,7 @@ interface MoviesRepository {
 
     fun searchMovies(query: String, page: Int): Flow<PagingData<Movie>>
 
-    fun getFavorites(query: String, page: Int): Flow<PagingData<Movie>>
+    fun getFavoriteMovies(page: Int): Flow<PagingData<Movie>>
 
     suspend fun getMovieDetails(id: Int): Movie
 }
