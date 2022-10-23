@@ -1,7 +1,7 @@
 package com.marvel.moviesapp.data.remote.paging
 
-enum class PaginatedDataType(val query: String? = null) {
-    TOP_RATED,
-    NOW_PLAYING,
-    SEARCH
+sealed class PaginatedDataType {
+    object TopRated : PaginatedDataType()
+    object NowPlaying : PaginatedDataType()
+    data class Search(val query: String) : PaginatedDataType()
 }

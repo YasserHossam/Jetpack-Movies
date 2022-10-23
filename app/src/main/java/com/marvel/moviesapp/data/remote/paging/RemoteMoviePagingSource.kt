@@ -20,12 +20,11 @@ class RemoteMoviePagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RemoteMovie> {
         val currentPage = params.key ?: 0
-        val query = dataType.query ?: ""
         return try {
             val response = when (dataType) {
-                PaginatedDataType.TOP_RATED -> dataSource.getTopRatedMovies(currentPage)
-                PaginatedDataType.NOW_PLAYING -> dataSource.getNowPlayingMovies(currentPage)
-                PaginatedDataType.SEARCH -> dataSource.searchMovies(query, currentPage)
+                PaginatedDataType.NowPlaying -> dataSource.getNowPlayingMovies(currentPage)
+                is PaginatedDataType.Search -> dataSource.searchMovies(dataType.query, currentPage)
+                PaginatedDataType.TopRated -> dataSource.getTopRatedMovies(currentPage)
             }
             if (!response.isSuccessful)
                 return getException(response = response)
