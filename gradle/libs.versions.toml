@@ -16,6 +16,8 @@ accompanist       = '0.17.0'
 navigation        = '2.5.2'
 gson              = '2.9.0'
 coil              = '2.0.0-rc03'
+paging            = '3.1.1'
+pagingCompose     = '1.0.0-alpha14'
 
 [libraries]
 android-appCompat           = { module = "androidx.appcompat:appcompat", version.ref = "appCompat" }
@@ -42,6 +44,8 @@ compose-ui-tooling          = { module = "androidx.compose.ui:ui-tooling", versi
 compose-ui-tooling-preview  = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-navigation          = { module = "androidx.navigation:navigation-compose", version.ref = "navigation"}
 accompanist                 = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref ="accompanist" }
+paging-common               = { module = "androidx.paging:paging-common-ktx", version.ref = "paging" }
+paging-compose              = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
 
 
 
@@ -49,6 +53,7 @@ accompanist                 = { module = "com.google.accompanist:accompanist-sys
 networking = ["gson-gson", "okhttp-interceptor", "retrofit-gsonConverter", "retrofit-retrofit"]
 lifecycle  = ["lifecycle-livedataKtx", "lifecycle-runtimeKtx", "lifecycle-viewmodel-compose"]
 compose    = ["coil-compose", "compose-activity", "compose-material", "compose-materialIcons", "compose-runtimeLivedata", "compose-ui", "compose-ui-tooling", "compose-ui-tooling-preview", "accompanist", "compose-navigation"]
+paging     = ["paging-common", "paging-compose"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradleplugin" }

@@ -42,6 +42,7 @@ dependencies {
     implementation libs.android.material
     implementation libs.bundles.lifecycle
     implementation libs.bundles.compose
+    implementation libs.bundles.paging
 
     // Threading
     implementation libs.kotlin.coroutines.android
