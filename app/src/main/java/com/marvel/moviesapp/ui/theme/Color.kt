@@ -9,3 +9,5 @@ object BottomNavigationColor {
 }
 
 val topBarColor = Color(0xFF62007D)
+val textColor = Color(0xFFFFFFFF)
+val errorColor = Color(0xFFFC131E)
