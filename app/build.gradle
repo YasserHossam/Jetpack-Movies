@@ -53,6 +53,10 @@ dependencies {
     // Networking
     implementation libs.bundles.networking
 
+    // DB
+    implementation libs.bundles.room
+    kapt libs.room.compiler
+
     // Dependency Injection
     implementation libs.android.hilt
     kapt libs.android.hilt.compiler
