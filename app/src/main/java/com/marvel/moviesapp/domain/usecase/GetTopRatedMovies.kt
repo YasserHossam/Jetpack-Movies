@@ -6,7 +6,7 @@ import com.marvel.moviesapp.domain.model.Movie
 import kotlinx.coroutines.flow.Flow
 
 class GetTopRatedMovies(private val moviesRepository: MoviesRepository) {
-    operator fun invoke(page: Int): Flow<PagingData<Movie>> {
-        return moviesRepository.getTopRated(page)
+    operator fun invoke(): Flow<PagingData<Movie>> {
+        return moviesRepository.getTopRated()
     }
 }

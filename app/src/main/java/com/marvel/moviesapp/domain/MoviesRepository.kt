@@ -5,15 +5,19 @@ import com.marvel.moviesapp.domain.model.Movie
 import kotlinx.coroutines.flow.Flow
 
 interface MoviesRepository {
-    fun getNowPlaying(page: Int): Flow<PagingData<Movie>>
+    companion object {
+        const val PAGE_LIMIT = 20
+    }
 
-    fun getTopRated(page: Int): Flow<PagingData<Movie>>
+    fun getNowPlaying(): Flow<PagingData<Movie>>
 
-    fun searchMovies(query: String, page: Int): Flow<PagingData<Movie>>
+    fun getTopRated(): Flow<PagingData<Movie>>
+
+    fun searchMovies(query: String): Flow<PagingData<Movie>>
 
     suspend fun addToFavorites(movie: Movie)
 
-    fun getFavoriteMovies(page: Int): Flow<PagingData<Movie>>
+    fun getFavoriteMovies(): Flow<PagingData<Movie>>
 
     suspend fun getMovieDetails(id: Int): Movie
 }
