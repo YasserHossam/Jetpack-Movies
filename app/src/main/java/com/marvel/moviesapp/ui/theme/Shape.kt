@@ -22,3 +22,5 @@ val roundedShape = RoundedCornerShape(5.dp)
 val searchRoundedShape = RoundedCornerShape(20.dp)
 
 val lefCornersRoundedShape = RoundedCornerShape(topStart = 20.dp, bottomStart = 20.dp)
+
+val rateTextShape = RoundedCornerShape(3.dp)
