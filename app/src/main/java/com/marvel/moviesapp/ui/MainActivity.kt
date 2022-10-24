@@ -17,7 +17,9 @@ import com.marvel.moviesapp.ui.composable.HomeTopBar
 import com.marvel.moviesapp.ui.navigation.NavItem
 import com.marvel.moviesapp.ui.navigation.NavigationGraph
 import com.marvel.moviesapp.ui.theme.topBarColor
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
