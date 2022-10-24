@@ -9,18 +9,18 @@ import retrofit2.http.Query
 
 interface MoviesRemoteDataSource {
 
-    @GET("/movie/top_rated")
+    @GET("movie/top_rated")
     suspend fun getTopRatedMovies(@Query("page") page: Int): Response<BaseListingResponse<RemoteMovie>>
 
-    @GET("/movie/now_playing")
+    @GET("movie/now_playing")
     suspend fun getNowPlayingMovies(@Query("page") page: Int): Response<BaseListingResponse<RemoteMovie>>
 
-    @GET("/search/movie")
+    @GET("search/movie")
     suspend fun searchMovies(
         @Query("query") query: String,
         @Query("page") page: Int
     ): Response<BaseListingResponse<RemoteMovie>>
 
-    @GET("/search/movie/{id}")
+    @GET("movie/{id}")
     suspend fun getMovieDetails(@Path("id") id: Int): RemoteMovie
 }
