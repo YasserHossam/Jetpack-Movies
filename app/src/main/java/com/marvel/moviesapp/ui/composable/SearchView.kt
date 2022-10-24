@@ -41,7 +41,7 @@ fun SearchView(state: MutableState<TextFieldValue>) {
                 IconButton(
                     onClick = {
                         state.value =
-                            TextFieldValue("") // Remove text from TextField when you press the 'X' icon
+                            TextFieldValue("")
                     }
                 ) {
                     Icon(
