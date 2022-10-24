@@ -17,7 +17,7 @@ val bottomCornerShape = RoundedCornerShape(
     bottomEnd = 20.dp
 )
 
-val roundedShape = RoundedCornerShape(20.dp)
+val roundedShape = RoundedCornerShape(5.dp)
 
 val searchRoundedShape = RoundedCornerShape(20.dp)
 
