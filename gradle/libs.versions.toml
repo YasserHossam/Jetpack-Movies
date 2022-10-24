@@ -19,12 +19,14 @@ coil              = '2.0.0-rc03'
 paging            = '3.1.1'
 pagingCompose     = '1.0.0-alpha14'
 room              = "2.4.2"
+hiltCompose       = "1.0.0"
 
 [libraries]
 android-appCompat           = { module = "androidx.appcompat:appcompat", version.ref = "appCompat" }
 android-coreKtx             = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 android-material            = { module = "com.google.android.material:material", version.ref = "material" }
 android-hilt                = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+android-hilt-compose        = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltCompose" }
 android-hilt-compiler       = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 kotlin-coroutines-android   = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 gson-gson                   = { module = "com.google.code.gson:gson", version.ref = "gson" }
@@ -57,7 +59,7 @@ room-runtime                = { module = "androidx.room:room-runtime", version.r
 [bundles]
 networking = ["gson-gson", "okhttp-interceptor", "retrofit-gsonConverter", "retrofit-retrofit"]
 lifecycle  = ["lifecycle-livedataKtx", "lifecycle-runtimeKtx", "lifecycle-viewmodel-compose"]
-compose    = ["coil-compose", "compose-activity", "compose-material", "compose-materialIcons", "compose-runtimeLivedata", "compose-ui", "compose-ui-tooling", "compose-ui-tooling-preview", "accompanist", "compose-navigation"]
+compose    = ["coil-compose", "compose-activity", "compose-material", "compose-materialIcons", "compose-runtimeLivedata", "compose-ui", "compose-ui-tooling", "compose-ui-tooling-preview", "accompanist", "compose-navigation", "android-hilt-compose"]
 paging     = ["paging-common", "paging-compose"]
 room       = ["room-ktx", "room-paging", "room-runtime"]
 
