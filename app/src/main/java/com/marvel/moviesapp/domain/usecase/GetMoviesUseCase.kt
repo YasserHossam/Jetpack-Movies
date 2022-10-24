@@ -12,6 +12,7 @@ class GetMoviesUseCase(private val repository: MoviesRepository) {
             GetMoviesInput.NowPlaying -> repository.getNowPlaying()
             GetMoviesInput.TopRated -> repository.getTopRated()
             is GetMoviesInput.Search -> repository.searchMovies(getMoviesInput.query)
+            GetMoviesInput.Favorites -> repository.getFavoriteMovies()
         }
     }
 }

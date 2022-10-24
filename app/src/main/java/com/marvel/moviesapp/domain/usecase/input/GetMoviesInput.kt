@@ -4,4 +4,5 @@ sealed class GetMoviesInput {
     object NowPlaying : GetMoviesInput()
     object TopRated : GetMoviesInput()
     data class Search(val query: String) : GetMoviesInput()
+    object Favorites: GetMoviesInput()
 }

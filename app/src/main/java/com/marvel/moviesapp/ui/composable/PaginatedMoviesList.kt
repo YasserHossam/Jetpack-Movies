@@ -13,11 +13,12 @@ import com.marvel.moviesapp.ui.model.MovieModel
 fun PaginatedMoviesList(
     list: LazyPagingItems<MovieModel>,
     modifier: Modifier = Modifier,
-    favoriteState: (MovieModel) -> Unit
+    favoriteState: (MovieModel) -> Unit,
+    isFavoritesScreen: Boolean
 ) {
     LazyVerticalGrid(modifier = modifier, cells = GridCells.Fixed(3)) {
         items(list.itemCount) { index ->
-            list[index]?.let { MovieItem(movieModel = it, favoriteState) }
+            list[index]?.let { MovieItem(movieModel = it, favoriteState, isFavoritesScreen) }
         }
     }
 }

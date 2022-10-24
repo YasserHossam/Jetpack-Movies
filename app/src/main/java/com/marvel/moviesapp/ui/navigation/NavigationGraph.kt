@@ -8,7 +8,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.marvel.moviesapp.domain.usecase.input.GetMoviesInput
 import com.marvel.moviesapp.ui.screens.listing.MovieListingScreen
-import com.marvel.moviesapp.ui.screens.search.MovieSearchScreen
 
 @Composable
 fun NavigationGraph(navController: NavHostController, textState: MutableState<TextFieldValue>) {
@@ -20,10 +19,10 @@ fun NavigationGraph(navController: NavHostController, textState: MutableState<Te
             MovieListingScreen(input = GetMoviesInput.TopRated)
         }
         composable(NavItem.Search.screen_route) {
-            MovieSearchScreen(state = textState)
+            MovieListingScreen(input = GetMoviesInput.Search(textState.value.text))
         }
         composable(NavItem.Favorites.screen_route) {
-
+            MovieListingScreen(input = GetMoviesInput.Favorites)
         }
     }
 }

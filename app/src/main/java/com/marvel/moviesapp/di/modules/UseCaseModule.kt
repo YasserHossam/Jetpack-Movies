@@ -1,6 +1,7 @@
 package com.marvel.moviesapp.di.modules
 
 import com.marvel.moviesapp.domain.MoviesRepository
+import com.marvel.moviesapp.domain.usecase.AddToFavoritesUseCase
 import com.marvel.moviesapp.domain.usecase.GetMoviesUseCase
 import dagger.Module
 import dagger.Provides
@@ -14,5 +15,10 @@ object UseCaseModule {
     @Provides
     fun provideGetMoviesUseCase(repository: MoviesRepository): GetMoviesUseCase {
         return GetMoviesUseCase(repository)
+    }
+
+    @Provides
+    fun provideAddToFavoritesUseCase(repository: MoviesRepository): AddToFavoritesUseCase {
+        return AddToFavoritesUseCase(repository)
     }
 }

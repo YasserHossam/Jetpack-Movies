@@ -27,7 +27,11 @@ import com.marvel.moviesapp.ui.util.addEmptyLines
 
 
 @Composable
-fun MovieItem(movieModel: MovieModel, favoriteState: (MovieModel) -> Unit) {
+fun MovieItem(
+    movieModel: MovieModel,
+    favoriteState: (MovieModel) -> Unit,
+    isFavoritesScreen: Boolean
+) {
     val openDialog = remember { mutableStateOf(false) }
     Surface(
         shape = roundedShape, modifier = Modifier
@@ -41,11 +45,19 @@ fun MovieItem(movieModel: MovieModel, favoriteState: (MovieModel) -> Unit) {
             }
     ) {
         if (openDialog.value) {
-            FavoriteDialog(onCancel = { openDialog.value = false },
+            val (title, confirmText) = when {
+                isFavoritesScreen -> Pair("Add item to favorites?", "Add")
+                else -> Pair("Remove item from favorites?", "Remove")
+            }
+            FavoriteDialog(
+                onCancel = { openDialog.value = false },
                 onConfirm = {
                     openDialog.value = false
                     favoriteState(movieModel)
-                })
+                },
+                text = title,
+                confirmButtonText = confirmText
+            )
         }
         Column(modifier = Modifier.fillMaxSize()) {
             Box(modifier = Modifier.padding(bottom = 2.dp)) {

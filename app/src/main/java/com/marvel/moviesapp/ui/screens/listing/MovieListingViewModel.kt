@@ -6,18 +6,20 @@ import androidx.paging.cachedIn
 import androidx.paging.map
 import com.marvel.moviesapp.di.qualifiers.DomainUiMovieMapper
 import com.marvel.moviesapp.domain.model.Movie
+import com.marvel.moviesapp.domain.usecase.AddToFavoritesUseCase
 import com.marvel.moviesapp.domain.usecase.GetMoviesUseCase
 import com.marvel.moviesapp.domain.usecase.input.GetMoviesInput
 import com.marvel.moviesapp.ui.model.MovieModel
 import com.marvel.moviesapp.ui.util.UiMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.map
-import timber.log.Timber
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class GetMoviesViewModel @Inject constructor(
+class MovieListingViewModel @Inject constructor(
     private val getMoviesUseCase: GetMoviesUseCase,
+    private val addToFavoritesUseCase: AddToFavoritesUseCase,
     @DomainUiMovieMapper private val mapper: UiMapper<MovieModel, Movie>
 ) : ViewModel() {
 
@@ -26,6 +28,8 @@ class GetMoviesViewModel @Inject constructor(
         .cachedIn(viewModelScope)
 
     fun addToFavorites(movieModel: MovieModel) {
-
+        viewModelScope.launch {
+            addToFavoritesUseCase(mapper.mapFromUiModel(movieModel))
+        }
     }
 }
