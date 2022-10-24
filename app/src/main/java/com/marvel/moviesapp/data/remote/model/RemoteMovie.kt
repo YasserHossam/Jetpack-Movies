@@ -7,19 +7,19 @@ data class RemoteMovie(
     val id: Int,
 
     @SerializedName("poster_path")
-    val posterImagePath: String,
+    val posterImagePath: String?,
 
     @SerializedName("title")
-    val title: String,
+    val title: String?,
 
     @SerializedName("overview")
-    val description: String,
+    val description: String?,
 
     @SerializedName("vote_average")
-    val voteAverage: Float,
+    val voteAverage: Float?,
 
     @SerializedName("vote_count")
-    val voteCount: Int,
+    val voteCount: Int?,
 
     @SerializedName("genres")
     val genres: List<RemoteGenre>? = null

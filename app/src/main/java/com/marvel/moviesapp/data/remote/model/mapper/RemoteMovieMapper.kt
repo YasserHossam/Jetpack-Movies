@@ -5,14 +5,22 @@ import com.marvel.moviesapp.domain.model.Movie
 import com.marvel.moviesapp.domain.util.DomainMapper
 
 class RemoteMovieMapper : DomainMapper<RemoteMovie, Movie> {
+    companion object {
+        private const val BASE_IMAGE_PATH = "https://image.tmdb.org/t/p/w300"
+    }
+
     override fun mapToDomainModel(model: RemoteMovie): Movie {
+        val image = if (model.posterImagePath != null)
+            "${BASE_IMAGE_PATH}${model.posterImagePath}"
+        else
+            ""
         return Movie(
             id = model.id,
-            title = model.title,
-            description = model.description,
-            poster = model.posterImagePath,
-            voteAverage = model.voteAverage,
-            voteCount = model.voteCount
+            title = model.title ?: "",
+            description = model.description ?: "",
+            poster = image,
+            voteAverage = model.voteAverage ?: 0f,
+            voteCount = model.voteCount ?: 1
         )
     }
 
