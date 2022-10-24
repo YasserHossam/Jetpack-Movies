@@ -20,10 +20,16 @@ android {
     }
 
     buildTypes {
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        buildTypes.each {
+            it.buildConfigField 'String', 'MoviesApi', moviesApi
+            it.buildConfigField 'String', 'MoviesApiKey', moviesApiKey
+        }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
