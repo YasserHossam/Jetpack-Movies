@@ -39,6 +39,10 @@ class DefaultMoviesRepository(
         moviesDatabase.movieDao().insertMovie(localMapper.mapFromDomainModel(movie))
     }
 
+    override suspend fun removeFromFavorites(movieId: Int) {
+        moviesDatabase.movieDao().deleteMovie(movieId)
+    }
+
     override fun getFavoriteMovies(): Flow<PagingData<Movie>> {
         return Pager(getPagingConfig(),
             pagingSourceFactory = { moviesDatabase.movieDao().getFavorites() }

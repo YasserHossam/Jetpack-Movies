@@ -1,8 +1,9 @@
 package com.marvel.moviesapp.di.modules
 
 import com.marvel.moviesapp.domain.MoviesRepository
-import com.marvel.moviesapp.domain.usecase.AddToFavoritesUseCase
+import com.marvel.moviesapp.domain.usecase.AddFavoriteMovieUseCase
 import com.marvel.moviesapp.domain.usecase.GetMoviesUseCase
+import com.marvel.moviesapp.domain.usecase.RemoveFavoriteMovieUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +19,12 @@ object UseCaseModule {
     }
 
     @Provides
-    fun provideAddToFavoritesUseCase(repository: MoviesRepository): AddToFavoritesUseCase {
-        return AddToFavoritesUseCase(repository)
+    fun provideAddFavoriteMovieUseCase(repository: MoviesRepository): AddFavoriteMovieUseCase {
+        return AddFavoriteMovieUseCase(repository)
+    }
+
+    @Provides
+    fun provideRemoveFavoriteMovieUseCase(repository: MoviesRepository): RemoveFavoriteMovieUseCase {
+        return RemoveFavoriteMovieUseCase(repository)
     }
 }

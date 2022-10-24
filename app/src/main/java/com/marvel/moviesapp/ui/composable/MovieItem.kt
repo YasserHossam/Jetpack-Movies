@@ -46,8 +46,8 @@ fun MovieItem(
     ) {
         if (openDialog.value) {
             val (title, confirmText) = when {
-                isFavoritesScreen -> Pair("Add item to favorites?", "Add")
-                else -> Pair("Remove item from favorites?", "Remove")
+                isFavoritesScreen -> Pair("Remove item from favorites?", "Remove")
+                else -> Pair("Add item to favorites?", "Add")
             }
             FavoriteDialog(
                 onCancel = { openDialog.value = false },

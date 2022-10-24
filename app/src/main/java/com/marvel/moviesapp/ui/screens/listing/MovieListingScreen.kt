@@ -17,7 +17,15 @@ fun MovieListingScreen(
 ) {
     val items = viewModel.getMovies(input = input).collectAsLazyPagingItems()
     val isFavorites = input is GetMoviesInput.Favorites
-    MovieListingScreen(items, onFavoriteChanged = { viewModel.addToFavorites(it) }, isFavorites)
+    MovieListingScreen(
+        items,
+        onFavoriteChanged = {
+            if (isFavorites)
+                viewModel.removeFromFavorites(it)
+            else
+                viewModel.addToFavorites(it)
+        }, isFavorites
+    )
 }
 
 @Composable

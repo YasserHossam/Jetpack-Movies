@@ -17,6 +17,8 @@ interface MoviesRepository {
 
     suspend fun addToFavorites(movie: Movie)
 
+    suspend fun removeFromFavorites(movieId: Int)
+
     fun getFavoriteMovies(): Flow<PagingData<Movie>>
 
     suspend fun getMovieDetails(id: Int): Movie
