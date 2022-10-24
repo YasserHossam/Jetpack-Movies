@@ -12,6 +12,7 @@ import com.marvel.moviesapp.ui.model.MovieModel
 import com.marvel.moviesapp.ui.util.UiMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.map
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,4 +24,8 @@ class GetMoviesViewModel @Inject constructor(
     fun getMovies(input: GetMoviesInput) = getMoviesUseCase(input)
         .map { pagingData -> pagingData.map { mapper.mapToUiModel(it) } }
         .cachedIn(viewModelScope)
+
+    fun addToFavorites(movieModel: MovieModel) {
+
+    }
 }

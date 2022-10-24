@@ -12,7 +12,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.marvel.moviesapp.domain.usecase.input.GetMoviesInput
 import com.marvel.moviesapp.ui.composable.PaginatedMoviesList
-import com.marvel.moviesapp.ui.composable.SearchView
+import com.marvel.moviesapp.ui.model.MovieModel
 import com.marvel.moviesapp.ui.screens.listing.GetMoviesViewModel
 
 @Composable
@@ -20,7 +20,12 @@ fun MovieSearchScreen(
     viewModel: GetMoviesViewModel = hiltViewModel(),
     state: MutableState<TextFieldValue>
 ) {
-    val items = viewModel.getMovies(GetMoviesInput.Search(state.value.text)).collectAsLazyPagingItems()
-    val scrollState = rememberLazyListState()
-    PaginatedMoviesList(list = items, scrollState = scrollState, modifier = Modifier.fillMaxSize())
+    val items =
+        viewModel.getMovies(GetMoviesInput.Search(state.value.text)).collectAsLazyPagingItems()
+
+    PaginatedMoviesList(
+        list = items,
+        modifier = Modifier.fillMaxSize(),
+        favoriteState = { viewModel.addToFavorites(it) }
+    )
 }
