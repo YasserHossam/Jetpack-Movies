@@ -1,5 +1,6 @@
 package com.marvel.moviesapp.ui.composable
 
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigationItem
@@ -29,7 +30,8 @@ fun BottomNavigation(navController: NavController) {
     )
     androidx.compose.material.BottomNavigation(
         backgroundColor = BottomNavigationColor.background,
-        contentColor = Color.Black
+        contentColor = Color.Black,
+        modifier = Modifier.height(60.dp)
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
@@ -39,7 +41,7 @@ fun BottomNavigation(navController: NavController) {
             BottomNavigationItem(
                 icon = { Icon(icon, title, modifier = Modifier
                     .size(28.dp)
-                    .padding(3.dp)) },
+                    .padding(top = 6.dp, bottom = 3.dp, start = 3.dp, end = 3.dp)) },
                 label = { Text(text = stringResource(item.title), fontSize = 12.sp) },
                 selectedContentColor = BottomNavigationColor.selected,
                 unselectedContentColor = BottomNavigationColor.unselected,
