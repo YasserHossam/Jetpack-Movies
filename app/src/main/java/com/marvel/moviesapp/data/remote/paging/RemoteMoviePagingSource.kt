@@ -26,17 +26,11 @@ class RemoteMoviePagingSource(
                 is PaginatedDataType.Search -> dataSource.searchMovies(dataType.query, currentPage)
                 PaginatedDataType.TopRated -> dataSource.getTopRatedMovies(currentPage)
             }
-            if (!response.isSuccessful)
-                return getException(response = response)
-            val emptyResults = response.body()?.results?.isEmpty() ?: true
-            if (!emptyResults) {
-                LoadResult.Page(
-                    data = response.body()?.results!!,
-                    prevKey = if (currentPage == 0) null else currentPage - 1,
-                    nextKey = currentPage + 1
-                )
-            } else
-                LoadResult.Page(data = emptyList(), prevKey = null, nextKey = null)
+            LoadResult.Page(
+                data = response.results,
+                prevKey = if (currentPage == 0) null else currentPage - 1,
+                nextKey = currentPage + 1
+            )
 
         } catch (e: Exception) {
             getException(currentException = e)
