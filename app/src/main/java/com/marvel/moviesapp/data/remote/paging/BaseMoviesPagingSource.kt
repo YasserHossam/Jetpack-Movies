@@ -23,7 +23,7 @@ abstract class BaseMoviesPagingSource : PagingSource<Int, RemoteMovie>() {
             val response = getData(currentPage)
             LoadResult.Page(
                 data = response.results,
-                prevKey = if (currentPage == 0) null else currentPage - 1,
+                prevKey = if (currentPage == 1) null else currentPage - 1,
                 nextKey = currentPage + 1
             )
 
