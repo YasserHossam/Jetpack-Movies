@@ -23,22 +23,23 @@ sealed class NavItem(
                 SEARCH_ROUTE -> Search
                 FAVORITES_ROUTE -> Favorites
                 DETAILS_ROUTE -> Details
-                else -> NowPlaying
+                else -> if (route.startsWith(DETAILS_ROUTE)) Details else NowPlaying
             }
         }
     }
 
     object NowPlaying :
-        NavItem(R.string.bottom_navigation_now_playing, R.drawable.ic_playing, "now_playing")
+        NavItem(R.string.bottom_navigation_now_playing, R.drawable.ic_playing, NOW_PLAYING_ROUTE)
 
     object TopRated :
-        NavItem(R.string.bottom_navigation_top_rated, R.drawable.ic_medal, "top_rated")
+        NavItem(R.string.bottom_navigation_top_rated, R.drawable.ic_medal, TOP_RATED_ROUTE)
 
     object Search :
-        NavItem(R.string.bottom_navigation_search, R.drawable.ic_search, "search")
+        NavItem(R.string.bottom_navigation_search, R.drawable.ic_search, SEARCH_ROUTE)
 
     object Favorites :
-        NavItem(R.string.bottom_navigation_favorites, R.drawable.ic_favorite, "favorites")
+        NavItem(R.string.bottom_navigation_favorites, R.drawable.ic_favorite, FAVORITES_ROUTE)
 
-    object Details : NavItem(title = R.string.bottom_navigation_details, screen_route = "details")
+    object Details :
+        NavItem(title = R.string.bottom_navigation_details, screen_route = DETAILS_ROUTE)
 }

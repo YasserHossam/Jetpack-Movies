@@ -65,7 +65,14 @@ fun SearchView(state: MutableState<TextFieldValue>) {
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
             disabledIndicatorColor = Color.Transparent
-        )
+        ),
+        placeholder = {
+            Text(
+                text = "Enter Your Search Keyword",
+                color = Color.White.copy(alpha = 0.6f),
+                fontSize = 18.sp
+            )
+        }
     )
 }
 
