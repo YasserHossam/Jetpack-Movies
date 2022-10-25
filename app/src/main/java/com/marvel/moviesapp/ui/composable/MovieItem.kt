@@ -1,7 +1,9 @@
 package com.marvel.moviesapp.ui.composable
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -27,6 +29,7 @@ import com.marvel.moviesapp.ui.theme.*
 import com.marvel.moviesapp.ui.util.addEmptyLines
 
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MovieItem(
     movieModel: MovieModel,
@@ -40,11 +43,10 @@ fun MovieItem(
             .padding(start = 10.dp, end = 10.dp, top = 20.dp)
             .width(160.dp)
             .fillMaxWidth()
-            .pointerInput(Unit) {
-                detectTapGestures(
-                    onLongPress = { openDialog.value = true }
-                )
-            }
+            .combinedClickable(
+                onClick = { onItemClick(movieModel.id)},
+                onLongClick = {openDialog.value = true },
+            )
     ) {
         if (openDialog.value) {
             val (title, confirmText) = when {
@@ -61,7 +63,7 @@ fun MovieItem(
                 confirmButtonText = confirmText
             )
         }
-        Column(modifier = Modifier.fillMaxSize().clickable { onItemClick(movieModel.id) }) {
+        Column(modifier = Modifier.fillMaxSize()) {
             Box(modifier = Modifier.padding(bottom = 2.dp)) {
                 AsyncImage(
                     model = ImageRequest.Builder(LocalContext.current)
