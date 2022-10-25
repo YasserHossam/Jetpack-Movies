@@ -12,4 +12,6 @@ val topBarColor = Color(0xFF62007D)
 val textColor = Color(0xFFFFFFFF)
 val textBgColor = Color(0xFF502A5A)
 val errorColor = Color(0xFFFC131E)
-val starredColor = Color(0xFFC58524)
+val metadataTextColor = Color(0xFF502A5A)
+
+val detailsBackgroundColor = Color(0xFF212121)

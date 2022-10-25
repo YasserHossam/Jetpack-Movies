@@ -6,6 +6,7 @@
     <string name="bottom_navigation_top_rated">Top Rated</string>
     <string name="bottom_navigation_search">Search</string>
     <string name="bottom_navigation_favorites">Favorites</string>
+    <string name="bottom_navigation_details">Details</string>
 
     <!-- Error -->
     <string name="error_network">Network error, please try to reconnect then try again</string>

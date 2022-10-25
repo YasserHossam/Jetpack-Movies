@@ -5,8 +5,8 @@ import androidx.annotation.StringRes
 import com.marvel.moviesapp.R
 
 sealed class NavItem(
-    @StringRes val title: Int,
-    @DrawableRes val icon: Int,
+    @StringRes val title: Int = -1,
+    @DrawableRes val icon: Int = -1,
     val screen_route: String
 ) {
     companion object {
@@ -14,6 +14,7 @@ sealed class NavItem(
         private const val TOP_RATED_ROUTE = "top_rated"
         private const val SEARCH_ROUTE = "search"
         private const val FAVORITES_ROUTE = "favorites"
+        private const val DETAILS_ROUTE = "details"
 
         fun getObjectFromRoute(route: String): NavItem {
             return when (route) {
@@ -21,10 +22,13 @@ sealed class NavItem(
                 TOP_RATED_ROUTE -> TopRated
                 SEARCH_ROUTE -> Search
                 FAVORITES_ROUTE -> Favorites
+                DETAILS_ROUTE -> Details
                 else -> NowPlaying
             }
         }
     }
+
+    object Home : NavItem(screen_route = "home")
 
     object NowPlaying :
         NavItem(R.string.bottom_navigation_now_playing, R.drawable.ic_playing, "now_playing")
@@ -37,4 +41,6 @@ sealed class NavItem(
 
     object Favorites :
         NavItem(R.string.bottom_navigation_favorites, R.drawable.ic_favorite, "favorites")
+
+    object Details : NavItem(title = R.string.bottom_navigation_details, screen_route = "details")
 }

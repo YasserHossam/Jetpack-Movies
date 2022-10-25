@@ -46,6 +46,12 @@ class MainActivity : ComponentActivity() {
             }
         }
 
+        val shouldShowBottomNavigation = remember {
+            derivedStateOf {
+                currentDestination?.destination?.route != NavItem.Details.screen_route
+            }
+        }
+
         val textState = remember { mutableStateOf(TextFieldValue("")) }
         Scaffold(
             topBar = {
@@ -54,7 +60,7 @@ class MainActivity : ComponentActivity() {
                 else
                     HomeTopBar(title = stringResource(id = title))
             },
-            bottomBar = { BottomNavigation(navController = navController) }
+            bottomBar = { if(shouldShowBottomNavigation.value) BottomNavigation(navController = navController) }
         ) {
             NavigationGraph(navController = navController, textState)
         }

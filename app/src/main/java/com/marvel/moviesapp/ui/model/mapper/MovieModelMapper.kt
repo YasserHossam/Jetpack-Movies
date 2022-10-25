@@ -10,7 +10,10 @@ class MovieModelMapper : UiMapper<MovieModel, Movie> {
             id = model.id,
             title = model.title,
             poster = model.poster,
-            voteAverage = model.voteAverage
+            description = model.description,
+            voteAverage = model.voteAverage,
+            voteCount = model.voteCount,
+            genres = model.genres
         )
     }
 

@@ -16,7 +16,8 @@ import com.marvel.moviesapp.ui.model.MovieModel
 @Composable
 fun MovieListingScreen(
     viewModel: MovieListingViewModel = hiltViewModel(),
-    input: GetMoviesInput
+    input: GetMoviesInput,
+    onItemClick: () -> Unit
 ) {
     val myInput = remember { mutableStateOf(input) }
     myInput.value = input
@@ -29,7 +30,9 @@ fun MovieListingScreen(
                 viewModel.removeFromFavorites(it)
             else
                 viewModel.addToFavorites(it)
-        }, isFavorites
+        },
+        isFavorites,
+        onItemClick
     )
 }
 
@@ -37,12 +40,14 @@ fun MovieListingScreen(
 fun MovieListingScreen(
     items: LazyPagingItems<MovieModel>,
     onFavoriteChanged: (MovieModel) -> Unit,
-    isFavoritesScreen: Boolean
+    isFavoritesScreen: Boolean,
+    onItemClick: () -> Unit
 ) {
     PaginatedMoviesList(
         list = items,
         modifier = Modifier.fillMaxSize(),
         favoriteState = onFavoriteChanged,
-        isFavoritesScreen
+        isFavoritesScreen,
+        onItemClick
     )
 }

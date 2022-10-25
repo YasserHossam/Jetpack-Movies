@@ -14,11 +14,12 @@ fun PaginatedMoviesList(
     list: LazyPagingItems<MovieModel>,
     modifier: Modifier = Modifier,
     favoriteState: (MovieModel) -> Unit,
-    isFavoritesScreen: Boolean
+    isFavoritesScreen: Boolean,
+    onItemClick: () -> Unit
 ) {
     LazyVerticalGrid(modifier = modifier, cells = GridCells.Fixed(3)) {
         items(list.itemCount) { index ->
-            list[index]?.let { MovieItem(movieModel = it, favoriteState, isFavoritesScreen) }
+            list[index]?.let { MovieItem(movieModel = it, favoriteState, isFavoritesScreen, onItemClick) }
         }
     }
 }
