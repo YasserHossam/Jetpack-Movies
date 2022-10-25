@@ -72,4 +72,7 @@ dependencies {
     // Dependency Injection
     implementation libs.android.hilt
     kapt libs.android.hilt.compiler
+
+    // Testing
+    testImplementation libs.bundles.testing
 }
