@@ -85,7 +85,7 @@ fun DataState(movie: MovieModel) {
             Divider(color = Color.Gray, thickness = 1.dp)
             Spacer(modifier = Modifier.height(10.dp))
             LazyRow(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Start) {
-                itemsIndexed(movie.genres) { index, item ->
+                itemsIndexed(movie.genres.take(3)) { index, item ->
                     OutlinedTextField(
                         value = item,
                         onValueChange = {},
