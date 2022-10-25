@@ -5,7 +5,7 @@ import com.marvel.moviesapp.data.remote.model.RemoteGenre
 import com.marvel.moviesapp.data.remote.model.RemoteMovie
 import com.marvel.moviesapp.domain.model.Movie
 
-object MovieFactory {
+object MovieProvider {
     private const val id = 1
     private const val title = "Ace Ventura"
     private const val description = "Ace Ventura is a rising movie introducing jim carey..."

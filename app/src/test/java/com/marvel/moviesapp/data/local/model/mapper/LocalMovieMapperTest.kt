@@ -1,6 +1,6 @@
 package com.marvel.moviesapp.data.local.model.mapper
 
-import com.marvel.moviesapp.data.factory.MovieFactory
+import com.marvel.moviesapp.data.factory.MovieProvider
 import org.junit.Assert
 import org.junit.Test
 
@@ -11,8 +11,8 @@ class LocalMovieMapperTest {
     @Test
     fun `test mapping from local model to domain model returns correct results`() {
         // Given
-        val localMovie = MovieFactory.localMovie
-        val correctMappedMovie = MovieFactory.domainMovie
+        val localMovie = MovieProvider.localMovie
+        val correctMappedMovie = MovieProvider.domainMovie
 
         // When
         val mapTestResult = mapper.mapToDomainModel(localMovie)
@@ -28,8 +28,8 @@ class LocalMovieMapperTest {
     @Test
     fun `test mapping from domain model to local model returns correct results`() {
         // Given
-        val domainMovie = MovieFactory.domainMovie
-        val correctMappedMovie = MovieFactory.localMovie
+        val domainMovie = MovieProvider.domainMovie
+        val correctMappedMovie = MovieProvider.localMovie
 
         // When
         val mapTestResult = mapper.mapFromDomainModel(domainMovie)
