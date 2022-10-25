@@ -8,8 +8,8 @@ import com.marvel.moviesapp.data.local.db.MovieDatabase
 import com.marvel.moviesapp.data.local.model.LocalMovie
 import com.marvel.moviesapp.data.remote.MoviesRemoteDataSource
 import com.marvel.moviesapp.data.remote.model.RemoteMovie
+import com.marvel.moviesapp.data.remote.paging.MoviesPagingSourceFactory
 import com.marvel.moviesapp.data.remote.paging.PaginatedDataType
-import com.marvel.moviesapp.data.remote.paging.RemoteMoviePagingSource
 import com.marvel.moviesapp.domain.MoviesRepository
 import com.marvel.moviesapp.domain.model.Movie
 import com.marvel.moviesapp.domain.util.DomainMapper
@@ -18,6 +18,7 @@ import kotlinx.coroutines.flow.map
 
 class DefaultMoviesRepository(
     private val remoteDataSource: MoviesRemoteDataSource,
+    private val moviesPagingSourceFactory: MoviesPagingSourceFactory,
     private val remoteMapper: DomainMapper<RemoteMovie, Movie>,
     private val pageLimit: Int,
     private val moviesDatabase: MovieDatabase,
@@ -62,7 +63,7 @@ class DefaultMoviesRepository(
     private fun getPagingMoviesResult(dataType: PaginatedDataType): Flow<PagingData<Movie>> {
         return Pager(
             getPagingConfig(),
-            pagingSourceFactory = { RemoteMoviePagingSource(remoteDataSource, dataType) }
+            pagingSourceFactory = { moviesPagingSourceFactory.provide(dataType) }
         ).flow.map { pager ->
             pager.map { remoteMapper.mapToDomainModel(it) }
         }

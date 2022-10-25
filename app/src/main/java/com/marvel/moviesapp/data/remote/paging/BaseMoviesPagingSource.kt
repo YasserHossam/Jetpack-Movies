@@ -4,16 +4,15 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.marvel.moviesapp.data.remote.MoviesRemoteDataSource
 import com.marvel.moviesapp.data.remote.model.RemoteMovie
+import com.marvel.moviesapp.data.remote.model.response.BaseListingResponse
 import com.marvel.moviesapp.domain.exception.InvalidCredentialsException
 import com.marvel.moviesapp.domain.exception.NetworkException
 import com.marvel.moviesapp.domain.exception.UnknownException
 import retrofit2.Response
 import java.io.IOException
 
-class RemoteMoviePagingSource(
-    private val dataSource: MoviesRemoteDataSource,
-    private val dataType: PaginatedDataType
-) : PagingSource<Int, RemoteMovie>() {
+abstract class BaseMoviesPagingSource : PagingSource<Int, RemoteMovie>() {
+
     override fun getRefreshKey(state: PagingState<Int, RemoteMovie>): Int? {
         return state.anchorPosition
     }
@@ -21,11 +20,7 @@ class RemoteMoviePagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RemoteMovie> {
         val currentPage = params.key ?: 1
         return try {
-            val response = when (dataType) {
-                PaginatedDataType.NowPlaying -> dataSource.getNowPlayingMovies(currentPage)
-                is PaginatedDataType.Search -> dataSource.searchMovies(dataType.query, currentPage)
-                PaginatedDataType.TopRated -> dataSource.getTopRatedMovies(currentPage)
-            }
+            val response = getData(currentPage)
             LoadResult.Page(
                 data = response.results,
                 prevKey = if (currentPage == 0) null else currentPage - 1,
@@ -36,6 +31,8 @@ class RemoteMoviePagingSource(
             getException(currentException = e)
         }
     }
+
+    abstract suspend fun getData(currentPage: Int): BaseListingResponse<RemoteMovie>
 
     private fun getException(
         response: Response<*>? = null,

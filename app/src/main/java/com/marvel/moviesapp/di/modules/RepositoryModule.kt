@@ -7,6 +7,8 @@ import com.marvel.moviesapp.data.local.model.mapper.LocalMovieMapper
 import com.marvel.moviesapp.data.remote.MoviesRemoteDataSource
 import com.marvel.moviesapp.data.remote.model.RemoteMovie
 import com.marvel.moviesapp.data.remote.model.mapper.RemoteMovieMapper
+import com.marvel.moviesapp.data.remote.paging.DefaultMoviesPagingSourceFactory
+import com.marvel.moviesapp.data.remote.paging.MoviesPagingSourceFactory
 import com.marvel.moviesapp.di.qualifiers.LocalDomainMovieMapper
 import com.marvel.moviesapp.di.qualifiers.PageLimit
 import com.marvel.moviesapp.di.qualifiers.RemoteDomainMovieMapper
@@ -46,8 +48,14 @@ object RepositoryModule {
     }
 
     @Provides
+    fun provideMoviesPagingSourceFactory(remoteDataSource: MoviesRemoteDataSource): MoviesPagingSourceFactory {
+        return DefaultMoviesPagingSourceFactory(remoteDataSource)
+    }
+
+    @Provides
     fun provideMoviesRepository(
         remoteDataSource: MoviesRemoteDataSource,
+        moviesPagingSourceFactory: MoviesPagingSourceFactory,
         @RemoteDomainMovieMapper remoteMapper: DomainMapper<RemoteMovie, Movie>,
         @PageLimit pageLimit: Int,
         @LocalDomainMovieMapper localMapper: DomainMapper<LocalMovie, Movie>,
@@ -55,6 +63,7 @@ object RepositoryModule {
     ): MoviesRepository {
         return DefaultMoviesRepository(
             remoteDataSource,
+            moviesPagingSourceFactory,
             remoteMapper,
             pageLimit,
             moviesDatabase,
