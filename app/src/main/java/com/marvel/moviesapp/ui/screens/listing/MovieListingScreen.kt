@@ -17,7 +17,7 @@ import com.marvel.moviesapp.ui.model.MovieModel
 fun MovieListingScreen(
     viewModel: MovieListingViewModel = hiltViewModel(),
     input: GetMoviesInput,
-    onItemClick: () -> Unit
+    onItemClick: (Int) -> Unit
 ) {
     val myInput = remember { mutableStateOf(input) }
     myInput.value = input
@@ -41,7 +41,7 @@ fun MovieListingScreen(
     items: LazyPagingItems<MovieModel>,
     onFavoriteChanged: (MovieModel) -> Unit,
     isFavoritesScreen: Boolean,
-    onItemClick: () -> Unit
+    onItemClick: (Int) -> Unit
 ) {
     PaginatedMoviesList(
         list = items,

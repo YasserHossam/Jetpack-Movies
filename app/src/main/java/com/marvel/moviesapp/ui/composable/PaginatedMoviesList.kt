@@ -15,7 +15,7 @@ fun PaginatedMoviesList(
     modifier: Modifier = Modifier,
     favoriteState: (MovieModel) -> Unit,
     isFavoritesScreen: Boolean,
-    onItemClick: () -> Unit
+    onItemClick: (Int) -> Unit
 ) {
     LazyVerticalGrid(modifier = modifier, cells = GridCells.Fixed(3)) {
         items(list.itemCount) { index ->

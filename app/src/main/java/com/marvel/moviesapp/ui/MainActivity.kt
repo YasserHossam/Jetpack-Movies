@@ -48,7 +48,10 @@ class MainActivity : ComponentActivity() {
 
         val shouldShowBottomNavigation = remember {
             derivedStateOf {
-                currentDestination?.destination?.route != NavItem.Details.screen_route
+                val isDetails =
+                    currentDestination?.destination?.route?.startsWith(NavItem.Details.screen_route)
+                        ?: false
+                !isDetails
             }
         }
 
@@ -60,7 +63,7 @@ class MainActivity : ComponentActivity() {
                 else
                     HomeTopBar(title = stringResource(id = title))
             },
-            bottomBar = { if(shouldShowBottomNavigation.value) BottomNavigation(navController = navController) }
+            bottomBar = { if (shouldShowBottomNavigation.value) BottomNavigation(navController = navController) }
         ) {
             NavigationGraph(navController = navController, textState)
         }

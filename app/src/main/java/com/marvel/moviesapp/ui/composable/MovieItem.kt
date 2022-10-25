@@ -32,7 +32,7 @@ fun MovieItem(
     movieModel: MovieModel,
     favoriteState: (MovieModel) -> Unit,
     isFavoritesScreen: Boolean,
-    onItemClick: () -> Unit
+    onItemClick: (Int) -> Unit
 ) {
     val openDialog = remember { mutableStateOf(false) }
     Surface(
@@ -40,7 +40,6 @@ fun MovieItem(
             .padding(start = 10.dp, end = 10.dp, top = 20.dp)
             .width(160.dp)
             .fillMaxWidth()
-            .clickable { onItemClick() }
             .pointerInput(Unit) {
                 detectTapGestures(
                     onLongPress = { openDialog.value = true }
@@ -62,7 +61,7 @@ fun MovieItem(
                 confirmButtonText = confirmText
             )
         }
-        Column(modifier = Modifier.fillMaxSize().clickable { onItemClick() }) {
+        Column(modifier = Modifier.fillMaxSize().clickable { onItemClick(movieModel.id) }) {
             Box(modifier = Modifier.padding(bottom = 2.dp)) {
                 AsyncImage(
                     model = ImageRequest.Builder(LocalContext.current)

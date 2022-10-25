@@ -14,7 +14,7 @@ sealed class NavItem(
         private const val TOP_RATED_ROUTE = "top_rated"
         private const val SEARCH_ROUTE = "search"
         private const val FAVORITES_ROUTE = "favorites"
-        private const val DETAILS_ROUTE = "details"
+        const val DETAILS_ROUTE = "details"
 
         fun getObjectFromRoute(route: String): NavItem {
             return when (route) {
@@ -27,8 +27,6 @@ sealed class NavItem(
             }
         }
     }
-
-    object Home : NavItem(screen_route = "home")
 
     object NowPlaying :
         NavItem(R.string.bottom_navigation_now_playing, R.drawable.ic_playing, "now_playing")

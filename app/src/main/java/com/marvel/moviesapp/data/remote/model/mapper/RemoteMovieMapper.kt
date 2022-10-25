@@ -20,7 +20,8 @@ class RemoteMovieMapper : DomainMapper<RemoteMovie, Movie> {
             description = model.description ?: "",
             poster = image,
             voteAverage = model.voteAverage ?: 0f,
-            voteCount = model.voteCount ?: 1
+            voteCount = model.voteCount ?: 1,
+            genres = model.genres?.map { it.name } ?: listOf()
         )
     }
 
