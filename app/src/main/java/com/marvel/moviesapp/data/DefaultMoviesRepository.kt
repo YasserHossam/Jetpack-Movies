@@ -25,15 +25,30 @@ class DefaultMoviesRepository(
     private val localMapper: DomainMapper<LocalMovie, Movie>
 ) : MoviesRepository {
     override fun getNowPlaying(): Flow<PagingData<Movie>> {
-        return getPagingMoviesResult(PaginatedDataType.NowPlaying)
+        return Pager(
+            getPagingConfig(),
+            pagingSourceFactory = { moviesPagingSourceFactory.provide(PaginatedDataType.NowPlaying) }
+        ).flow.map { pager ->
+            pager.map { remoteMapper.mapToDomainModel(it) }
+        }
     }
 
     override fun getTopRated(): Flow<PagingData<Movie>> {
-        return getPagingMoviesResult(PaginatedDataType.TopRated)
+        return Pager(
+            getPagingConfig(),
+            pagingSourceFactory = { moviesPagingSourceFactory.provide(PaginatedDataType.TopRated) }
+        ).flow.map { pager ->
+            pager.map { remoteMapper.mapToDomainModel(it) }
+        }
     }
 
     override fun searchMovies(query: String): Flow<PagingData<Movie>> {
-        return getPagingMoviesResult(PaginatedDataType.Search(query))
+        return Pager(
+            getPagingConfig(),
+            pagingSourceFactory = { moviesPagingSourceFactory.provide(PaginatedDataType.Search(query)) }
+        ).flow.map { pager ->
+            pager.map { remoteMapper.mapToDomainModel(it) }
+        }
     }
 
     override suspend fun addToFavorites(movie: Movie) {
@@ -58,14 +73,5 @@ class DefaultMoviesRepository(
 
     private fun getPagingConfig(): PagingConfig {
         return PagingConfig(pageLimit)
-    }
-
-    private fun getPagingMoviesResult(dataType: PaginatedDataType): Flow<PagingData<Movie>> {
-        return Pager(
-            getPagingConfig(),
-            pagingSourceFactory = { moviesPagingSourceFactory.provide(dataType) }
-        ).flow.map { pager ->
-            pager.map { remoteMapper.mapToDomainModel(it) }
-        }
     }
 }
